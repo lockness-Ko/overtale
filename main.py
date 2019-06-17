@@ -3,8 +3,8 @@ import pygame
 import os
 # define a main function
 def main():
-    xpos = 50
-    ypos = 50
+    xpos = 0
+    ypos = 0
     # initialize the pygame module
     pygame.init()
     # load and set the logo
@@ -15,7 +15,9 @@ def main():
     # create a surface on screen that has the size of 240 x 180
     screen = pygame.display.set_mode((500,500))
     image = pygame.image.load("hm.jpg")
-    image = pygame.transform.scale(image, (200, 200))
+    image = pygame.transform.scale(image, (100, 100))
+    paper = pygame.image.load("paper.jpg")
+    paper = pygame.transform.scale(image, (100,100))
     # define a variable to control the main loop
     running = True
     music = os.path.join("D:\overtale", 'bruh.wav')
