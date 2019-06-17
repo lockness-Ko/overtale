@@ -5,8 +5,14 @@ import os
 def main():
     xpos = 0
     ypos = 0
+    px=400
+    py=400
+    won=False
     # initialize the pygame module
     pygame.init()
+    pygame.font.init()
+    myfont = pygame.font.SysFont('Comic Sans MS', 30)
+    textsurface = myfont.render('You Won!', False, (255, 255, 255))
     # load and set the logo
     #logo = pygame.image.load("logo32x32.png")
     #pygame.display.set_icon(logo)
@@ -17,7 +23,7 @@ def main():
     image = pygame.image.load("hm.jpg")
     image = pygame.transform.scale(image, (100, 100))
     paper = pygame.image.load("paper.jpg")
-    paper = pygame.transform.scale(image, (100,100))
+    paper = pygame.transform.scale(paper, (100,100))
     # define a variable to control the main loop
     running = True
     music = os.path.join("D:\overtale", 'bruh.wav')
@@ -25,19 +31,29 @@ def main():
     pygame.mixer.music.play(-1)
     # main loop
     while running:
-        screen.blit(image, (xpos,ypos))
-        pygame.display.flip()
-        pygame.draw.rect(screen, [0,0,0], [0,0,500,500],0)
+        if won != True:
+            screen.blit(image, (xpos,ypos))
+            screen.blit(paper, (px,py))
+            pygame.display.flip()
+            pygame.draw.rect(screen, [0,0,0], [0,0,500,500],0)
+            if xpos>300 and ypos < 300:
+                won=True
+        else:
+            print(xpos)
+            screen.blit(textsurface,(200,200))
+        
         # event handling, gets all event from the event queue
         for event in pygame.event.get():
+            
             try:
-                if (event.key == pygame.K_LEFT):
+                print(event.key)
+                if (event.key == 276):
                     xpos-=15
-                elif (event.key == pygame.K_RIGHT):
+                elif (event.key == 275):
                     xpos+=15
-                elif (event.key == pygame.K_UP):
+                elif (event.key == 273):
                     ypos-=15
-                elif (event.key == pygame.K_DOWN):
+                elif (event.key == 274):
                     ypos+=15
             except Exception as ex:
                 pass
